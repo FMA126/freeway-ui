@@ -1,6 +1,6 @@
 export default function V1() {
-  return(
-     <>
+  return (
+    <>
       <div>FreewWayDAO</div>
     </>
   )
