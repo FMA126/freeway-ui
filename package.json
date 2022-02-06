@@ -2,6 +2,8 @@
   "name": "freeway-ui",
   "private": true,
   "scripts": {
+    "contracts:compile:abi": "typechain --target ethers-v5 --out-dir src/abis/types \"./src/abis/**/*.json\"",
+    "contracts:compile": "yarn contracts:compile:abi",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
