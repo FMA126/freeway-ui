@@ -27,7 +27,6 @@ const Home: NextPage = () => {
           </Link>
         </Box>
       </Container>
-      <MapboxMap />
     </>
   )
 }
