@@ -28,9 +28,7 @@ export default function MyApp(props: MyAppProps) {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
-        <NavDrawer />
         <Component {...pageProps} />
-        <BottomNav />
       </ThemeProvider>
     </CacheProvider>
   )
