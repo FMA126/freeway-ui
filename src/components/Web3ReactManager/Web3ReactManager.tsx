@@ -1,4 +1,4 @@
-import { useEagerConnect, useInactiveListener } from '../../hooks/web3'
+import { useEagerConnect, useInactiveListener } from '@hooks/web3'
 
 export default function Web3ReactManager({ children }: { children: JSX.Element }) {
   // const { active } = useWeb3React()
