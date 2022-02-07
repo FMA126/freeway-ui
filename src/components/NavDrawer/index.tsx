@@ -10,6 +10,8 @@ import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Fragment, KeyboardEvent, MouseEvent, useState } from 'react'
+import Link from '../Link'
+import { useRouter } from 'next/router'
 
 export default function NavDrawer() {
   const [isOpen, setIsOpen] = useState(false)
@@ -25,6 +27,8 @@ export default function NavDrawer() {
     setIsOpen(open)
   }
 
+  const router = useRouter()
+
   const list = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
       <List>
@@ -37,10 +41,10 @@ export default function NavDrawer() {
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {['Driver', 'Rider'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemText primary={<Link href={`${router.pathname}/${text.toLowerCase()}`}>{text}</Link>} />
           </ListItem>
         ))}
       </List>
