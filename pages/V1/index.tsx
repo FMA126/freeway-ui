@@ -1,11 +1,16 @@
 import BottomNav from '../../src/components/BottomNav'
-import MapboxMap from '../../src/components/MapboxMap'
 import NavDrawer from '../../src/components/NavDrawer'
 import { Web3Provider } from '@ethersproject/providers'
 import { Web3ReactProvider } from '@web3-react/core'
 import { useEffect } from 'react'
 import Web3ReactManager from '../../src/components/Web3ReactManager/Web3ReactManager'
 import styles from './V1.module.css'
+
+import dynamic from 'next/dynamic'
+
+const MapboxMap = dynamic(() => import('../../src/components/MapboxMap'), {
+  ssr: false,
+})
 
 export default function V1() {
   function getLibrary(provider: any): Web3Provider {
