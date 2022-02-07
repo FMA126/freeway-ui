@@ -8,19 +8,13 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
+import MenuIcon from '@mui/icons-material/Menu'
 import { Fragment, KeyboardEvent, MouseEvent, useState } from 'react'
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right'
-
 export default function NavDrawer() {
-  const [state, setState] = useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  })
+  const [isOpen, setIsOpen] = useState(false)
 
-  const toggleDrawer = (anchor: Anchor, open: boolean) => (event: KeyboardEvent | MouseEvent) => {
+  const toggleDrawer = (open: boolean) => (event: KeyboardEvent | MouseEvent) => {
     if (
       event.type === 'keydown' &&
       ((event as KeyboardEvent).key === 'Tab' || (event as KeyboardEvent).key === 'Shift')
@@ -28,16 +22,11 @@ export default function NavDrawer() {
       return
     }
 
-    setState({ ...state, [anchor]: open })
+    setIsOpen(open)
   }
 
-  const list = (anchor: Anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
+  const list = (
+    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
@@ -60,14 +49,14 @@ export default function NavDrawer() {
 
   return (
     <div>
-      {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
-        <Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-            {list(anchor)}
-          </Drawer>
-        </Fragment>
-      ))}
+      <Fragment>
+        <Button onClick={toggleDrawer(true)}>
+          <MenuIcon />
+        </Button>
+        <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(false)}>
+          {list}
+        </Drawer>
+      </Fragment>
     </div>
   )
 }

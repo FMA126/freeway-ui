@@ -1,0 +1,18 @@
+.navBar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.map {
+  height: 88%
+}
+
+.footBar {
+  height: 12%;
+}
+
+.pageContainer {
+  height: 100vh;
+}

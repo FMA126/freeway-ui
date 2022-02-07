@@ -1,4 +1,3 @@
-
-* {
-  box-sizing: border-box;
+canvas {
+  z-index: 0;
 }

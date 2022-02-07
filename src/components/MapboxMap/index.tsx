@@ -36,7 +36,7 @@ function MapboxMap() {
     }
   }, [])
 
-  return <div ref={mapNode} style={{ width: '500px', height: '500px' }} />
+  return <div ref={mapNode} style={{ width: '100%', height: '100%' }} />
 }
 
 export default MapboxMap
