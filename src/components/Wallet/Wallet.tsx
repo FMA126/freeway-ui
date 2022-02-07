@@ -2,9 +2,9 @@ import './Wallet.css'
 
 import { formatEther } from '@ethersproject/units'
 import { useWeb3React } from '@web3-react/core'
-import { injected } from 'connectors'
+import { injected } from '@connectors/index'
 import { useEffect, useState } from 'react'
-import { shortenAddress, shortenBalance } from 'utils'
+import { shortenAddress, shortenBalance } from '@utils/index'
 
 export default function Wallet() {
   const { active, account, activate, library } = useWeb3React()
