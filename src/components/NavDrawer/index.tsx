@@ -10,7 +10,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Fragment, KeyboardEvent, MouseEvent, useState } from 'react'
-import Link from '../Link'
+import Link, { NextLinkComposed } from '../Link'
 import { useRouter } from 'next/router'
 
 export default function NavDrawer() {
@@ -44,7 +44,9 @@ export default function NavDrawer() {
         {['Driver', 'Rider'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={<Link href={`${router.pathname}/${text.toLowerCase()}`}>{text}</Link>} />
+            <ListItemText
+              primary={<NextLinkComposed to={`${router.pathname}/${text.toLowerCase()}`}>{text}</NextLinkComposed>}
+            />
           </ListItem>
         ))}
       </List>

@@ -8,8 +8,6 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import theme from '../src/Mui/theme'
 import createEmotionCache from '../src/Mui/createEmotionCache'
-import NavDrawer from '../src/components/NavDrawer'
-import BottomNav from '../src/components/BottomNav'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
