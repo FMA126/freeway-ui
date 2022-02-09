@@ -7,14 +7,19 @@ import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
+import LocalTaxiIcon from '@mui/icons-material/LocalTaxi'
+import HailIcon from '@mui/icons-material/Hail'
+import TimelineIcon from '@mui/icons-material/Timeline'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Fragment, KeyboardEvent, MouseEvent, useState } from 'react'
-import Link, { NextLinkComposed } from '../Link'
+import Link from '../Link'
 import { useRouter } from 'next/router'
+import { useTheme } from '@mui/material/styles'
 
 export default function NavDrawer() {
   const [isOpen, setIsOpen] = useState(false)
+  const theme = useTheme()
+  const router = useRouter()
 
   const toggleDrawer = (open: boolean) => (event: KeyboardEvent | MouseEvent) => {
     if (
@@ -27,25 +32,32 @@ export default function NavDrawer() {
     setIsOpen(open)
   }
 
-  const router = useRouter()
-
+  const listIcons = {
+    INBOX_ICON: <InboxIcon color="secondary" />,
+  }
   const list = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Messages', 'Trips'].map((text, index, listArray) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon>{index % 2 === 0 ? listIcons.INBOX_ICON : <TimelineIcon color="secondary" />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
-      <Divider />
+      <Divider color="seconday" />
       <List>
         {['Driver', 'Rider'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemIcon>
+              {index % 2 === 0 ? <HailIcon color="secondary" /> : <LocalTaxiIcon color="secondary" />}
+            </ListItemIcon>
             <ListItemText
-              primary={<NextLinkComposed to={`${router.pathname}/${text.toLowerCase()}`}>{text}</NextLinkComposed>}
+              primary={
+                <Link noLinkStyle={false} href={`${router.pathname}/${text.toLowerCase()}`}>
+                  {text}
+                </Link>
+              }
             />
           </ListItem>
         ))}
@@ -57,7 +69,7 @@ export default function NavDrawer() {
     <div>
       <Fragment>
         <Button onClick={toggleDrawer(true)}>
-          <MenuIcon />
+          <MenuIcon color="primary" fontSize="large" />
         </Button>
         <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(false)}>
           {list}

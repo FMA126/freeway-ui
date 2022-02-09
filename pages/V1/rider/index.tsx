@@ -1,4 +1,5 @@
 import { useWeb3React } from '@web3-react/core'
+import Web3ReactManager from 'src/components/Web3ReactManager/Web3ReactManager'
 
 export default function MintRider() {
   // { active, account, activate, connector, deactivate, error, library }
@@ -17,11 +18,13 @@ export default function MintRider() {
     )
   }
   return (
-    <div className="mint-container-rider">
-      <h1>Mint Rider</h1>
-      <button onClick={handleRiderMint}>
-        Mint <span>🎢</span>
-      </button>
-    </div>
+    <Web3ReactManager>
+      <div className="mint-container-rider">
+        <h1>Mint Rider</h1>
+        <button onClick={handleRiderMint}>
+          Mint <span>🎢</span>
+        </button>
+      </div>
+    </Web3ReactManager>
   )
 }

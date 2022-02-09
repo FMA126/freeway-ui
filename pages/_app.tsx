@@ -8,6 +8,8 @@ import CssBaseline from '@mui/material/CssBaseline'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import theme from '../src/Mui/theme'
 import createEmotionCache from '../src/Mui/createEmotionCache'
+import { Web3ReactProvider } from '@web3-react/core'
+import { Web3Provider } from '@ethersproject/providers'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -18,6 +20,16 @@ interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  function getLibrary(provider: any): Web3Provider {
+    return new Web3Provider(
+      provider,
+      typeof provider.chainId === 'number'
+        ? provider.chainId
+        : typeof provider.chainId === 'string'
+        ? parseInt(provider.chainId)
+        : 'any'
+    )
+  }
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -25,7 +37,9 @@ export default function MyApp(props: MyAppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <Web3ReactProvider getLibrary={getLibrary}>
+          <Component {...pageProps} />
+        </Web3ReactProvider>
       </ThemeProvider>
     </CacheProvider>
   )
