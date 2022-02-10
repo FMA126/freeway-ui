@@ -1,3 +1,10 @@
+import { Fragment, KeyboardEvent, MouseEvent, useState } from 'react'
+import Link from '../Link'
+import { useRouter } from 'next/router'
+
+import { useTheme } from '@mui/material/styles'
+import styles from './NavDrawer.module.css'
+
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
@@ -11,10 +18,8 @@ import LocalTaxiIcon from '@mui/icons-material/LocalTaxi'
 import HailIcon from '@mui/icons-material/Hail'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import MenuIcon from '@mui/icons-material/Menu'
-import { Fragment, KeyboardEvent, MouseEvent, useState } from 'react'
-import Link from '../Link'
-import { useRouter } from 'next/router'
-import { useTheme } from '@mui/material/styles'
+import AddCircleIcon from '@mui/icons-material/AddCircle'
+import { Typography } from '@mui/material'
 
 export default function NavDrawer() {
   const [isOpen, setIsOpen] = useState(false)
@@ -37,6 +42,18 @@ export default function NavDrawer() {
   }
   const list = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+      <>
+        <div className={styles.profileContainer}>
+          <div className={styles.profilePicContainer}>
+            <div className={styles.profilePicEmpty}>
+              <AddCircleIcon fontSize="medium" />
+            </div>
+          </div>
+          <Typography className={styles.addProfilePicIcon} variant="h4" component="h4">
+            Name
+          </Typography>
+        </div>
+      </>
       <List>
         {['Messages', 'Trips'].map((text, index, listArray) => (
           <ListItem button key={text}>
@@ -71,7 +88,7 @@ export default function NavDrawer() {
         <Button onClick={toggleDrawer(true)}>
           <MenuIcon color="primary" fontSize="large" />
         </Button>
-        <Drawer anchor="right" open={isOpen} onClose={toggleDrawer(false)}>
+        <Drawer anchor="left" open={isOpen} onClose={toggleDrawer(false)}>
           {list}
         </Drawer>
       </Fragment>

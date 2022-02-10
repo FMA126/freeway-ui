@@ -1,8 +1,6 @@
 import BottomNav from '../../src/components/BottomNav'
 import NavDrawer from '../../src/components/NavDrawer'
-import { Web3Provider } from '@ethersproject/providers'
-import { Web3ReactProvider } from '@web3-react/core'
-import { ReactElement, useEffect } from 'react'
+import { useEffect } from 'react'
 import Web3ReactManager from '../../src/components/Web3ReactManager/Web3ReactManager'
 import styles from './V1.module.css'
 

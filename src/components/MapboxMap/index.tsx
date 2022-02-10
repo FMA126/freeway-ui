@@ -27,7 +27,7 @@ function MapboxMap() {
           ? process.env.NEXT_PUBLIC_MAPBOX_API_KEY
           : 'pk.eyJ1IjoiZnJlZXdheWRhbyIsImEiOiJja3pidThyZmEyaWZ6MnZuZnNidGUwaWlzIn0.2w-HD8M4ebZVhfvrPdvqzA',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-74.5, 40],
+      center: [-116.215019, 43.618881],
       zoom: 9,
     })
 
