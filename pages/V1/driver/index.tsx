@@ -2,6 +2,8 @@ import { useWeb3React } from '@web3-react/core'
 import { useEffect, useState } from 'react'
 import FreeWayBackendAPI from 'src/api'
 import Web3ReactManager from 'src/components/Web3ReactManager/Web3ReactManager'
+// import { FreeWayDriver__factory } from 'abis/types'
+// import { DRIVER_MUMBAI_ADDRESS } from 'constants/chains'
 import { Datum, IDriver, IDrivers } from './types'
 
 export default function Driver() {
